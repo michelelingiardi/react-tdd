@@ -1,22 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const NewRestaurantForm = ({ onSave }) => {
-  var state = { inputText: 'teste' }
+  const [inputText, setInputText] = useState('');
 
   const handleTextChange = (event) => {
-    state.inputText = event.target.value;
+    setInputText(event.target.value);
   }
 
   return(
     <div>
       <input 
         type="text"
-        value={state.inputText}
+        value={inputText}
         onChange={handleTextChange}
         data-test="newRestaurantName"
       />
       <button
-        onClick={onSave(state.inputText)}
+        onClick={() => onSave(inputText)}
         data-test="saveNewRestaurantButton">
           Save
       </button>

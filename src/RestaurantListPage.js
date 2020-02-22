@@ -1,19 +1,22 @@
 import React, { useState, useCallback, useEffect } from 'react'
 import NewRestaurantForm from './NewRestaurantForm'
+import RestaurantList from './RestaurantList'
 
 const RestaurantListPage = () => {
-  var [restaurantName, setRestaurantName] = useState([]);
+  var [restaurants, setRestaurants] = useState([]);
 
-  const handleRestaurantName = (newRestaurantName) => {
-    setRestaurantName(newRestaurantName);
+  const handleAddRestaurant = (newRestaurantName) => {
+    setRestaurants([newRestaurantName, ...restaurants]);
   }
 
   return (
     <div>
-      <p>{restaurantName}</p>
       <button
-        data-test="addRestaurantButton">add restaurant</button>
-      <NewRestaurantForm onSave={handleRestaurantName}/>
+        data-test="addRestaurantButton">
+          add restaurant
+      </button>
+      <NewRestaurantForm onSave={handleAddRestaurant} />
+      <RestaurantList restaurants={restaurants}/>
     </div>
   )
 }
