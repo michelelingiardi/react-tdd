@@ -1,12 +1,18 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import {
+  Collection,
+  CollectionItem
+} from 'react-materialize';
 
 const RestaurantList = ({ restaurants }) => {
   return (
-    <ul>
-      {restaurants.map( restaurantName => 
-        <li key={restaurantName}>{restaurantName}</li>
+    <Collection>
+      {restaurants.map(restaurantName =>
+        <CollectionItem key={restaurantName}>
+          {restaurantName}
+        </CollectionItem>
       )}
-    </ul>
+    </Collection>
   );
 }
 

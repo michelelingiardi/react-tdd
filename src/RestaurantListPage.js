@@ -1,4 +1,5 @@
-import React, { useState, useCallback, useEffect } from 'react'
+import React, { useState } from 'react'
+import { Button } from 'react-materialize'
 import NewRestaurantForm from './NewRestaurantForm'
 import RestaurantList from './RestaurantList'
 
@@ -15,11 +16,11 @@ const RestaurantListPage = () => {
 
   return (
     <div>
-      <button
+      <Button
         onClick={() => setShowNewRestaurantForm(true)}
         data-test="addRestaurantButton">
           add restaurant
-      </button>
+      </Button>
       {addNewRestaurant}
       <RestaurantList restaurants={restaurants}/>
     </div>
