@@ -1,8 +1,7 @@
-const NOVO_RESTAURANTE = 'Sushi Place'
+const NOVO_RESTAURANTE = 'Sushi Place';
 
 describe('adding a restaurant', () => {
   it('displays the restaurant in the list', () => {
-    
     cy.visit('http://localhost:1234');
 
     cy.get('[data-test="newRestaurantName"]')

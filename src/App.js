@@ -1,19 +1,16 @@
 import React from 'react';
-import RestaurantListPage from './RestaurantListPage'
-import {
-  Row,
-  Col
-} from 'react-materialize'
+import RestaurantListPage from './RestaurantListPage';
+import Grid from '@material-ui/core/Grid';
 
 export default class App extends React.Component {
   render() {
     return (
       <div>
-        <Row>
-          <Col s={12} m={10} l={8} offset="m1 l2">
+        <Grid container justify="center">
+          <Grid item sm={12} md={10} lg={8}>
             <RestaurantListPage />
-          </Col>
-        </Row>
+          </Grid>
+        </Grid>
       </div>
     );
   }

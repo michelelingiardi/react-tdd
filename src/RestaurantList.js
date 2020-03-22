@@ -1,22 +1,20 @@
 import React from 'react';
-import {
-  Collection,
-  CollectionItem
-} from 'react-materialize';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
 
 const RestaurantList = ({ restaurants }) => {
   return (
-    <Collection header="restaurantes">
+    <List header="restaurantes">
       { restaurants.length === 0
-          &&  <CollectionItem style={ {color: 'gray'} }>(nenhum restaurante adicionado ainda)</CollectionItem>
+          && <ListItem style={ { color: 'gray' } }>(nenhum restaurante adicionado ainda)</ListItem>
       }
       {restaurants.map(restaurantName =>
-        <CollectionItem key={restaurantName}>
+        <ListItem key={restaurantName}>
           {restaurantName}
-        </CollectionItem>
+        </ListItem>,
       )}
-    </Collection>
+    </List>
   );
-}
+};
 
 export default RestaurantList;

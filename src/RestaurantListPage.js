@@ -1,40 +1,78 @@
-import React, { useState } from 'react'
-import {
-  Button,
-  Col,
-  Row,
-} from 'react-materialize'
-import NewRestaurantForm from './NewRestaurantForm'
-import RestaurantList from './RestaurantList'
+import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import Popover from '@material-ui/core/Popover';
+import Grid from '@material-ui/core/Grid';
+import NewRestaurantForm from './NewRestaurantForm';
+import RestaurantList from './RestaurantList';
+
+export const useStyles = makeStyles(theme => ({
+  paper: {
+    position: 'absolute',
+    overflowY: 'auto',
+    overflowX: 'hidden',
+    // So we see the popover when it's empty.
+    // It's most likely on issue on userland.
+    minWidth: 500,
+    minHeight: 40,
+    maxHeight: 'calc(100vh - 32px)',
+    '&:focus': {
+      outline: 'none',
+    },
+  },
+}));
 
 const RestaurantListPage = () => {
-  var [restaurants, setRestaurants] = useState([]);
-  var [showNewRestaurantForm, setShowNewRestaurantForm] = useState(false);
+  const [restaurants, setRestaurants] = useState([]);
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const classes = useStyles();
+
+  const handleOpenNewRestaurantForm = event => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleCloseNewRestaurantForm = () => {
+    setAnchorEl(null);
+  };
 
   const handleAddRestaurant = (newRestaurantName) => {
     setRestaurants([newRestaurantName, ...restaurants]);
-    setShowNewRestaurantForm(false);
-  }
+    setAnchorEl(null);
+  };
 
-  const addNewRestaurantForm = showNewRestaurantForm ? <NewRestaurantForm onSave={handleAddRestaurant} /> : null;
+  const open = Boolean(anchorEl);
+  const id = open ? 'addRestaurantPopoverForm' : undefined;
 
   return (
-    <div>
-      <Row>
-        <Button
-          onClick={() => setShowNewRestaurantForm(true)}
-          data-test="addRestaurantButton">
-          novo restaurante
+    <Grid container>
+      <Grid item xs={12}>
+        <Button aria-describedby={id} variant="outlined" color="primary" onClick={handleOpenNewRestaurantForm} data-test="addRestaurantButton">
+          incluir restaurante
         </Button>
-      </Row>
-      <Row>
-        {addNewRestaurantForm}
-      </Row>
-      <Row>
+        <Popover
+          classes={classes}
+          id={id}
+          open={open}
+          anchorEl={anchorEl}
+          onClose={handleCloseNewRestaurantForm}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
+          }}
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'left',
+          }}
+        >
+          <NewRestaurantForm onSave={handleAddRestaurant} />
+        </Popover>
+      </Grid>
+      <Grid item xs={12}>
         <RestaurantList restaurants={restaurants} />
-      </Row>
-    </div>
-  )
-}
+      </Grid>
+    </Grid>
+  );
+};
 
-module.exports = RestaurantListPage
+export default RestaurantListPage;
