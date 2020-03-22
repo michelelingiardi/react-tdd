@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 version: 2
 jobs:
   build:
@@ -26,3 +27,22 @@ jobs:
       - run: npm install -g wait-on
       - run: npm run start & wait-on http://localhost:1234
       - run: $(npm bin)/cypress run --record --key <record_key>
+=======
+version: 2.1
+orbs:
+  node: circleci/node@1.1.6
+jobs:
+  build-and-test:
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      - node/with-cache:
+          steps:
+            - run: npm install
+            - run: npm test
+workflows:
+    build-and-test:
+      jobs:
+        - build-and-test
+>>>>>>> f60d47b934b9425a6220677ef2304e7659199c54
