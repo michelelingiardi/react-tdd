@@ -11,8 +11,6 @@ export const useStyles = makeStyles(theme => ({
     position: 'absolute',
     overflowY: 'auto',
     overflowX: 'hidden',
-    // So we see the popover when it's empty.
-    // It's most likely on issue on userland.
     minWidth: 500,
     minHeight: 40,
     maxHeight: 'calc(100vh - 32px)',
@@ -47,7 +45,12 @@ const RestaurantListPage = () => {
   return (
     <Grid container>
       <Grid item xs={12}>
-        <Button aria-describedby={id} variant="outlined" color="primary" onClick={handleOpenNewRestaurantForm} data-test="addRestaurantButton">
+        <Button
+          aria-describedby={id}
+          variant="outlined"
+          color="primary"
+          onClick={handleOpenNewRestaurantForm}
+          data-test="addRestaurantButton">
           incluir restaurante
         </Button>
         <Popover

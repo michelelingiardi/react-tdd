@@ -6,9 +6,9 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
   paper: {
-    textAlign: `center`
-  }
-}))
+    textAlign: `center`,
+  },
+}));
 
 const NewRestaurantForm = ({ onSave }) => {
   const [inputText, setInputText] = useState('');
