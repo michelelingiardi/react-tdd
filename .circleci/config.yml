@@ -24,4 +24,5 @@ jobs:
       - run: yarn lint
       - run: yarn unit
       - run: npm install -g wait-on
-      - run: node_modules/.bin/cypress run
+      - run: npm start & wait-on http://localhost:1234
+      - run: cypress run
