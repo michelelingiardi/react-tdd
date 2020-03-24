@@ -27,7 +27,7 @@ const NewRestaurantForm = ({ onSave }) => {
           fullWidth
           value={inputText}
           onChange={handleTextChange}
-          data-test="newRestaurantName"
+          autoFocus
         />
       </Grid>
 

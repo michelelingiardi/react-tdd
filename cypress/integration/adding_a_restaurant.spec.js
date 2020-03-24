@@ -18,10 +18,13 @@ describe('adding a restaurant', () => {
     cy.get('[data-test="newRestaurantName"]')
       .should('not.exist');
 
-    // adicionando novo restaurante
+    // campo newRestaurantName esta com foco quando modal eh aberto
     cy.get('[data-test="addRestaurantButton"]')
-      .click();
+    .click();
 
+    cy.focused().should('have.attr', 'id', 'newRestaurantNameId');
+
+    // modal permite adicionar novo restaurante
     cy.get('[data-test="newRestaurantName"]')
       .type(NOVO_RESTAURANTE);
 
