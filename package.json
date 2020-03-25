@@ -31,7 +31,7 @@
   },
   "scripts": {
     "start": "parcel index.html",
-    "lint": "eslint cypress/**/*.js src/**/*.js test/**/*.js",
+    "lint": "eslint cypress/**/*.js src/**/*.js test/**/*.js --no-error-on-unmatched-pattern",
     "lint:fix": "eslint --fix cypress/**/*.js src/**/*.js test/**/*.js",
     "unit": "jest test/**/*.spec.js",
     "e2e": "cypress open"
