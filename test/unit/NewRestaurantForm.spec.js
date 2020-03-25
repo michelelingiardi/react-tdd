@@ -18,7 +18,6 @@ describe('NewRestaurantForm', () => {
       wrapper
         .find('button[data-test="saveNewRestaurantButton"]')
         .simulate('click');
-
     });
 
     it('calls the onSave handler', () => {
@@ -28,8 +27,8 @@ describe('NewRestaurantForm', () => {
     it('clears the text field', () => {
       expect(
         wrapper
-        .find('input[id="newRestaurantNameId"]').props().value
+          .find('input[id="newRestaurantNameId"]').props().value,
       ).toEqual('');
-    })
+    });
   });
 });

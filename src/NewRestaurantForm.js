@@ -21,7 +21,7 @@ const NewRestaurantForm = ({ onSave }) => {
   const handleSaveNewRestaurant = () => {
     onSave(inputText);
     setInputText('');
-  }
+  };
 
   return (
     <Grid container justify="center" alignItems="center">

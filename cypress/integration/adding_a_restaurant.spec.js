@@ -20,7 +20,7 @@ describe('adding a restaurant', () => {
 
     // campo newRestaurantName esta com foco quando modal eh aberto
     cy.get('[data-test="addRestaurantButton"]')
-    .click();
+      .click();
 
     cy.focused().should('have.attr', 'id', 'newRestaurantNameId');
 
