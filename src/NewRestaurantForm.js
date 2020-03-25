@@ -18,16 +18,22 @@ const NewRestaurantForm = ({ onSave }) => {
     setInputText(event.target.value);
   };
 
+  const handleSaveNewRestaurant = () => {
+    onSave(inputText);
+    setInputText('');
+  };
+
   return (
     <Grid container justify="center" alignItems="center">
       <Grid item xs={12} sm={9}>
         <TextField
           id="newRestaurantNameId"
+          data-test="newRestaurantName"
           label="nome do restaurante"
-          fullWidth
           value={inputText}
           onChange={handleTextChange}
-          data-test="newRestaurantName"
+          fullWidth
+          autoFocus
         />
       </Grid>
 
@@ -35,7 +41,7 @@ const NewRestaurantForm = ({ onSave }) => {
         <Button
           variant="contained"
           size="small"
-          onClick={() => onSave(inputText)}
+          onClick={handleSaveNewRestaurant}
           data-test="saveNewRestaurantButton"
         >
           adicionar

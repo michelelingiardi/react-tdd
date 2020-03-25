@@ -4,12 +4,27 @@ describe('adding a restaurant', () => {
   it('displays the restaurant in the list', () => {
     cy.visit('http://localhost:1234');
 
+    // modal nao eh exibido
     cy.get('[data-test="newRestaurantName"]')
       .should('not.exist');
 
+    // modal pode ser cancelado
     cy.get('[data-test="addRestaurantButton"]')
       .click();
 
+    cy.get('[data-test="newRestaurantName"]')
+      .type("{esc}");
+
+    cy.get('[data-test="newRestaurantName"]')
+      .should('not.exist');
+
+    // campo newRestaurantName esta com foco quando modal eh aberto
+    cy.get('[data-test="addRestaurantButton"]')
+      .click();
+
+    cy.focused().should('have.attr', 'id', 'newRestaurantNameId');
+
+    // modal permite adicionar novo restaurante
     cy.get('[data-test="newRestaurantName"]')
       .type(NOVO_RESTAURANTE);
 
