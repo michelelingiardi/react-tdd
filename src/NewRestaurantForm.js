@@ -18,6 +18,11 @@ const NewRestaurantForm = ({ onSave }) => {
     setInputText(event.target.value);
   };
 
+  const handleSaveNewRestaurant = () => {
+    onSave(inputText);
+    setInputText('');
+  }
+
   return (
     <Grid container justify="center" alignItems="center">
       <Grid item xs={12} sm={9}>
@@ -36,7 +41,7 @@ const NewRestaurantForm = ({ onSave }) => {
         <Button
           variant="contained"
           size="small"
-          onClick={() => onSave(inputText)}
+          onClick={handleSaveNewRestaurant}
           data-test="saveNewRestaurantButton"
         >
           adicionar
