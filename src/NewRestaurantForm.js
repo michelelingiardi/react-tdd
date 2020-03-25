@@ -23,10 +23,11 @@ const NewRestaurantForm = ({ onSave }) => {
       <Grid item xs={12} sm={9}>
         <TextField
           id="newRestaurantNameId"
+          data-test="newRestaurantName"
           label="nome do restaurante"
-          fullWidth
           value={inputText}
           onChange={handleTextChange}
+          fullWidth
           autoFocus
         />
       </Grid>
