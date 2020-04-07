@@ -1,4 +1,5 @@
 const NOVO_RESTAURANTE = 'Sushi Place';
+const ERRO_NOME_EM_BRANCO = 'Digite o nome do restaurante.';
 
 describe('adding a restaurant', () => {
   it('displays the restaurant in the list', () => {
@@ -35,5 +36,15 @@ describe('adding a restaurant', () => {
       .should('not.exist');
 
     cy.contains(NOVO_RESTAURANTE);
+
+    // modal nao permite adicionar restaurante em branco
+    cy.get('[data-test="addRestaurantButton"]')
+      .click();
+
+    cy.get('[data-test="saveNewRestaurantButton"]')
+      .click();
+
+    cy.get('[data-test="newRestaurantNameError"]')
+      .contains(ERRO_NOME_EM_BRANCO);
   });
 });
