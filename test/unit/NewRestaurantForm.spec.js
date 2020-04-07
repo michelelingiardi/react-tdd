@@ -21,7 +21,10 @@ describe('NewRestaurantForm', () => {
     });
 
     it('calls the onSave handler', () => {
-      expect(saveHandler).toHaveBeenCalledWith('Sushi Place');
+      window.setTimeout(() => {
+        expect(saveHandler).toHaveBeenCalledWith('Sushi Place');
+        done();
+      }, 0);
     });
 
     it('clears the text field', () => {
