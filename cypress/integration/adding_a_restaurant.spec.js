@@ -5,11 +5,19 @@ describe('adding a restaurant', () => {
   it('displays the restaurant in the list', () => {
     cy.visit('http://localhost:1234');
 
-    // modal nao eh exibido
+    modalNaoEhExibido();
+    modalPodeSerCancelado();
+    campoNewRestaurantNameTemFocoQuandoAberto();
+    modalPermiteAdicionarNovoRestaurante(NOVO_RESTAURANTE);
+    modalNaoPermiteAdicionarRestauranteEmBranco();
+  });
+
+  const modalNaoEhExibido = () => {
     cy.get('[data-test="newRestaurantName"]')
       .should('not.exist');
+  };
 
-    // modal pode ser cancelado
+  const modalPodeSerCancelado = () => {
     cy.get('[data-test="addRestaurantButton"]')
       .click();
 
@@ -18,16 +26,24 @@ describe('adding a restaurant', () => {
 
     cy.get('[data-test="newRestaurantName"]')
       .should('not.exist');
+  };
 
-    // campo newRestaurantName esta com foco quando modal eh aberto
+  const campoNewRestaurantNameTemFocoQuandoAberto = () => {
     cy.get('[data-test="addRestaurantButton"]')
       .click();
 
     cy.focused().should('have.attr', 'id', 'newRestaurantNameId');
 
-    // modal permite adicionar novo restaurante
     cy.get('[data-test="newRestaurantName"]')
-      .type(NOVO_RESTAURANTE);
+      .type("{esc}");
+  };
+
+  const modalPermiteAdicionarNovoRestaurante = (nomeRestaurante) => {
+    cy.get('[data-test="addRestaurantButton"]')
+      .click();
+
+    cy.get('[data-test="newRestaurantName"]')
+      .type(nomeRestaurante);
 
     cy.get('[data-test="saveNewRestaurantButton"]')
       .click();
@@ -35,9 +51,10 @@ describe('adding a restaurant', () => {
     cy.get('[data-test="newRestaurantName"]')
       .should('not.exist');
 
-    cy.contains(NOVO_RESTAURANTE);
+    cy.contains(nomeRestaurante);
+  };
 
-    // modal nao permite adicionar restaurante em branco
+  const modalNaoPermiteAdicionarRestauranteEmBranco = () => {
     cy.get('[data-test="addRestaurantButton"]')
       .click();
 
@@ -46,5 +63,8 @@ describe('adding a restaurant', () => {
 
     cy.get('[data-test="newRestaurantNameError"]')
       .contains(ERRO_NOME_EM_BRANCO);
-  });
+
+    cy.get('[data-test="newRestaurantName"]')
+      .type("{esc}");
+  };
 });
