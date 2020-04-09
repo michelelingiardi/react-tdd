@@ -12,7 +12,7 @@ export const useStyles = makeStyles(theme => ({
     overflowY: 'auto',
     overflowX: 'hidden',
     minWidth: 500,
-    minHeight: 40,
+    minHeight: 0,
     maxHeight: 'calc(100vh - 32px)',
     '&:focus': {
       outline: 'none',

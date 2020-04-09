@@ -21,23 +21,23 @@ const NewRestaurantForm = ({ onSave }) => {
   };
 
   const validateNewRestaurantName = (values) => {
-    const errors = {}
+    const errors = {};
     if (values.restaurantName === '') {
       errors.restaurantName = 'Digite o nome do restaurante.';
     }
     return errors;
-  }
+  };
 
   return (
-    <Grid container justify="center" alignItems="center">
-      <Formik
-        initialValues={{ restaurantName: '' }}
-        validate={validateNewRestaurantName}
-        onSubmit={handleSaveNewRestaurant}>
-        {({ values, errors, handleChange, handleSubmit }) => (
-          <>
-            <form onSubmit={handleSubmit}>
-              <Grid item xs={12} sm={9}>
+    <Formik
+      initialValues={{ restaurantName: '' }}
+      validate={validateNewRestaurantName}
+      onSubmit={handleSaveNewRestaurant}>
+      {({ values, errors, handleChange, handleSubmit }) => (
+        <>
+          <form onSubmit={handleSubmit}>
+            <Grid container spacing={0} justify="center" alignItems="center">
+              <Grid item xs={12} sm={8}>
                 <TextField
                   id="newRestaurantNameId"
                   data-test="newRestaurantName"
@@ -50,7 +50,7 @@ const NewRestaurantForm = ({ onSave }) => {
                 />
                 <FormHelperText data-test="newRestaurantNameError" error={true}>{errors.restaurantName}</FormHelperText>
               </Grid>
-              <Grid item xs={12} sm={3} className={classes.paper}>
+              <Grid item xs={12} sm={4} className={classes.paper}>
                 <Button
                   type="submit"
                   variant="contained"
@@ -58,13 +58,13 @@ const NewRestaurantForm = ({ onSave }) => {
                   data-test="saveNewRestaurantButton"
                 >
                   adicionar
-              </Button>
+                </Button>
               </Grid>
-            </form>
-          </>
-        )}
-      </Formik>
-    </Grid>
+            </Grid>
+          </form>
+        </>
+      )}
+    </Formik>
   );
 };
 

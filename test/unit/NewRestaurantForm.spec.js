@@ -26,7 +26,7 @@ describe('NewRestaurantForm', () => {
     it('calls the onSave handler', () => {
       // window.setTimeout(() => {
       //   expect(saveHandler).toHaveBeenCalledWith('aaa');
-        // done();
+      // done();
       // }, 0);
     });
 
